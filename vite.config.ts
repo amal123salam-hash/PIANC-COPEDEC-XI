@@ -15,9 +15,8 @@ export default defineConfig(({ mode }) => {
         '@': path.resolve(__dirname, '.'),
       },
     },
-    // Required for GitHub Pages — set to '/' if using a custom domain
-    // or '/<repo-name>/' if hosting at username.github.io/repo-name/
-    '/PIANC-COPEDEC-XI/': './',
+    // GitHub Pages repo path — must match your repo name exactly
+    base: '/PIANC-COPEDEC-XI/',
     build: {
       outDir: 'dist',
       rollupOptions: {
