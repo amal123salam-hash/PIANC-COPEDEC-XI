@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,900;1,400&family=Space+Grotesk:wght@500;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Public Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-label: "Space Grotesk", ui-monospace, monospace;
+
+  --color-primary: #001e40;
+  --color-primary-container: #003366;
+  --color-secondary: #006781;
+  --color-secondary-container: #87ddff;
+  --color-tertiary: #C8A84B;
+  --color-tertiary-container: #ffe08c;
+  
+  --color-background: #f9f9ff;
+  --color-surface: #f9f9ff;
+  --color-on-surface: #191c21;
+  --color-surface-container: #ededf4;
+  --color-surface-container-low: #f3f3fa;
+  --color-surface-container-high: #e7e8ef;
+  --color-surface-container-highest: #e1e2e9;
+  --color-on-surface-variant: #43474f;
+  --color-outline: #737780;
+  --color-outline-variant: #c3c6d1;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-on-surface font-sans antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display tracking-tight;
+  }
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.glass-effect {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.ambient-shadow {
+  box-shadow: 0 32px 32px -4px rgba(0, 30, 64, 0.08);
+}
