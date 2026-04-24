@@ -17,7 +17,7 @@ export default defineConfig(({ mode }) => {
     },
     // Required for GitHub Pages — set to '/' if using a custom domain
     // or '/<repo-name>/' if hosting at username.github.io/repo-name/
-    base: './',
+    '/PIANC-COPEDEC-XI/': './',
     build: {
       outDir: 'dist',
       rollupOptions: {
