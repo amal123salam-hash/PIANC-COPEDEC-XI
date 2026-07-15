@@ -43,7 +43,7 @@ export default function HomeView() {
               <span className="font-label text-[10px] uppercase tracking-widest font-bold">21–26 February 2027</span>
             </div>
             <h1 className="text-5xl md:text-8xl font-black text-white tracking-tighter mb-6 leading-[0.95]">
-              PIANC – <br/>COPEDEC XI
+              PIANC – <br/>COPEDEC 9
             </h1>
             <p className="text-xl md:text-2xl text-blue-100/90 font-medium mb-8 leading-relaxed border-l-4 border-tertiary pl-6">
               "Adapting coastal, port and waterway infrastructure to the changing climate."
@@ -135,24 +135,31 @@ export default function HomeView() {
             View All Speakers <Users size={18} />
           </button>
         </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {SPEAKERS.map((speaker, idx) => (
-            <motion.div 
+            <motion.div
               key={speaker.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: idx * 0.1 }}
               viewport={{ once: true }}
-              className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all ambient-shadow"
+              className="group bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all ambient-shadow border border-slate-50 relative overflow-hidden"
             >
-              <div className="aspect-square bg-slate-100 overflow-hidden">
-                <img src={speaker.image} alt={speaker.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+              <div className="absolute top-0 left-0 w-full h-1 bg-tertiary" />
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-14 h-14 rounded-2xl bg-primary/5 text-primary flex items-center justify-center font-black text-xl flex-none">
+                  {speaker.name.split(' ').slice(-1)[0].charAt(0)}
+                  {speaker.name.split(' ')[0].charAt(speaker.name.split(' ')[0].length > 2 ? 1 : 0)}
+                </div>
+                <span className="font-label text-[10px] uppercase tracking-widest font-black text-tertiary">Keynote</span>
               </div>
-              <div className="p-8">
-                <h4 className="font-black text-xl text-primary mb-1">{speaker.name}</h4>
-                <p className="text-secondary text-sm font-bold mb-3">{speaker.role}</p>
-                <p className="text-on-surface-variant text-xs italic opacity-70">{speaker.institution}</p>
+              <h4 className="font-black text-xl text-primary mb-1 leading-tight">{speaker.name}</h4>
+              <p className="text-secondary text-sm font-bold mb-1">{speaker.role}</p>
+              <p className="text-on-surface-variant text-xs italic opacity-70 mb-5">{speaker.institution}</p>
+              <div className="pt-5 border-t border-slate-100">
+                <span className="text-[9px] font-black uppercase tracking-widest text-outline block mb-1.5">Talk</span>
+                <p className="text-primary text-sm font-semibold leading-snug">{speaker.talk}</p>
               </div>
             </motion.div>
           ))}

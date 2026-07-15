@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { Menu, X, Home, Calendar, FileText, Info, MoreHorizontal, Download, MessageSquare, MapPin, Users, Store, Handshake, Mail, AppWindow } from 'lucide-react';
+import { Menu, X, Home, Calendar, FileText, Info, MoreHorizontal, Download, MessageSquare, MapPin, Users, Store, Handshake, Mail, AppWindow, Map as MapIcon, Table2, Heart } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import { useWishlistContext } from '../context/WishlistContext';
 
 export function Header() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -18,8 +19,8 @@ export function Header() {
               <Menu size={24} />
             </button>
             <div className="flex items-center gap-3">
-              <span className="text-primary font-black tracking-tighter text-xl hidden sm:block">PIANC-COPEDEC XI</span>
-              <span className="text-primary font-black tracking-tighter text-xl sm:hidden">COPEDEC XI</span>
+              <span className="text-primary font-black tracking-tighter text-xl hidden sm:block">PIANC-COPEDEC 9</span>
+              <span className="text-primary font-black tracking-tighter text-xl sm:hidden">COPEDEC 9</span>
             </div>
           </div>
           
@@ -29,6 +30,8 @@ export function Header() {
             <NavLink to="/about" className={({ isActive }) => `text-sm font-bold tracking-tight transition-colors ${isActive ? 'text-primary' : 'text-slate-500 hover:text-primary'}`}>About</NavLink>
             <NavLink to="/schedule" className={({ isActive }) => `text-sm font-bold tracking-tight transition-colors ${isActive ? 'text-primary' : 'text-slate-500 hover:text-primary'}`}>Schedule</NavLink>
             <NavLink to="/papers" className={({ isActive }) => `text-sm font-bold tracking-tight transition-colors ${isActive ? 'text-primary' : 'text-slate-500 hover:text-primary'}`}>Papers</NavLink>
+            <NavLink to="/map" className={({ isActive }) => `text-sm font-bold tracking-tight transition-colors ${isActive ? 'text-primary' : 'text-slate-500 hover:text-primary'}`}>Map</NavLink>
+            <NavLink to="/contact" className={({ isActive }) => `text-sm font-bold tracking-tight transition-colors ${isActive ? 'text-primary' : 'text-slate-500 hover:text-primary'}`}>Contact</NavLink>
           </nav>
 
           <div className="flex items-center gap-2">
@@ -63,7 +66,7 @@ export function Header() {
                 >
                   <X size={20} />
                 </button>
-                <div className="text-xl font-bold text-primary tracking-tight pr-8">PIANC-COPEDEC XI</div>
+                <div className="text-xl font-bold text-primary tracking-tight pr-8">PIANC-COPEDEC 9</div>
                 <div className="font-label text-[10px] text-secondary uppercase tracking-widest font-bold">IIT Madras, India</div>
               </div>
 
@@ -72,10 +75,13 @@ export function Header() {
                 <DrawerLink to="/info" icon={<Info size={20} />} label="Information" onClick={() => setIsDrawerOpen(false)} />
                 <DrawerLink to="/about" icon={<Users size={20} />} label="About the Conference" onClick={() => setIsDrawerOpen(false)} />
                 <DrawerLink to="/schedule" icon={<Calendar size={20} />} label="Schedule" onClick={() => setIsDrawerOpen(false)} />
+                <DrawerLink to="/schedule/wishlist" icon={<Heart size={20} />} label="My Schedule" onClick={() => setIsDrawerOpen(false)} />
+                <DrawerLink to="/schedule/table" icon={<Table2 size={20} />} label="Schedule Table" onClick={() => setIsDrawerOpen(false)} />
+                <DrawerLink to="/map" icon={<MapIcon size={20} />} label="Venue Map" onClick={() => setIsDrawerOpen(false)} />
                 <DrawerLink to="/papers" icon={<FileText size={20} />} label="Papers" onClick={() => setIsDrawerOpen(false)} />
-                
+
                 <div className="my-2 border-t border-slate-100 mx-4" />
-                
+
                 <DrawerLink to="/registration" icon={<AppWindow size={20} />} label="Registration" onClick={() => setIsDrawerOpen(false)} />
                 <DrawerLink to="/sponsors" icon={<Handshake size={20} />} label="Sponsorship" onClick={() => setIsDrawerOpen(false)} />
                 <DrawerLink to="/contact" icon={<Mail size={20} />} label="Contact Us" onClick={() => setIsDrawerOpen(false)} />
@@ -106,22 +112,26 @@ function DrawerLink({ to, icon, label, onClick }: { to: string, icon: React.Reac
 }
 
 export function BottomNav() {
+  const { count } = useWishlistContext();
+
   return (
     <nav className="fixed bottom-0 w-full z-50 bg-primary dark:bg-slate-950 md:hidden border-t border-white/10 rounded-t-xl shadow-[0_-4px_20px_rgba(0,30,64,0.15)]">
-      <div className="flex justify-around items-center h-16 px-4">
+      <div className="flex justify-around items-center h-16 px-2">
         <NavIcon to="/" icon={<Home size={20} />} label="Home" />
         <NavIcon to="/schedule" icon={<Calendar size={20} />} label="Schedule" />
-        <NavIcon to="/papers" icon={<FileText size={20} />} label="Papers" />
-        <NavIcon to="/info" icon={<MoreHorizontal size={20} />} label="Info" />
+        <NavIcon to="/schedule/wishlist" icon={<Heart size={20} />} label="My List" badge={count} />
+        <NavIcon to="/map" icon={<MapIcon size={20} />} label="Map" />
+        <NavIcon to="/info" icon={<MoreHorizontal size={20} />} label="More" />
       </div>
     </nav>
   );
 }
 
-function NavIcon({ to, icon, label }: { to: string, icon: React.ReactNode, label: string }) {
+function NavIcon({ to, icon, label, badge }: { to: string, icon: React.ReactNode, label: string, badge?: number }) {
   return (
-    <NavLink to={to} className={({ isActive }) => `flex flex-col items-center justify-center pt-2 transition-all gap-1 ${isActive ? 'text-tertiary font-bold border-t-2 border-tertiary' : 'text-blue-200/60 hover:text-amber-200'}`}>
+    <NavLink to={to} className={({ isActive }) => `relative flex flex-col items-center justify-center pt-2 transition-all gap-1 ${isActive ? 'text-tertiary font-bold border-t-2 border-tertiary' : 'text-blue-200/60 hover:text-amber-200'}`}>
       {icon}
+      {badge ? <span className="absolute -top-1 right-2 bg-tertiary text-primary text-[8px] font-black rounded-full min-w-[14px] h-[14px] flex items-center justify-center px-0.5">{badge}</span> : null}
       <span className="uppercase tracking-widest text-[9px] font-bold font-sans">{label}</span>
     </NavLink>
   );

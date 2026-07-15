@@ -8,7 +8,8 @@ export interface Speaker {
   name: string;
   role: string;
   institution: string;
-  image: string;
+  talk: string;
+  image?: string;
   isKeynote?: boolean;
 }
 
@@ -23,8 +24,11 @@ export interface TimelineItem {
 
 export interface Session {
   id: string;
+  date: string;
   time: string;
   endTime: string;
+  /** 24h start hour in [0, 24) used for reminder scheduling; parsed from `time`. */
+  startHour: number;
   type: 'Keynote' | 'Technical' | 'Workshop' | 'Social';
   category?: string;
   location: string;
@@ -52,4 +56,22 @@ export interface SponsorshipTier {
   icon: string;
   features: string[];
   color: string;
+}
+
+export interface MapLocation {
+  id: string;
+  name: string;
+  category: 'Hall' | 'Facility' | 'Service' | 'Transport' | 'Stay';
+  description: string;
+  lat: number;
+  lng: number;
+}
+
+export interface ContactPerson {
+  id: string;
+  name: string;
+  role: string;
+  email?: string;
+  phone?: string;
+  group: 'Committee' | 'Registration' | 'Emergency' | 'Transport';
 }
