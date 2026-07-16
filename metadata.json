@@ -1,6 +1,6 @@
 {
   "name": "PIANC-COPEDEC XI",
   "description": "Official mobile app for the 11th International Conference on Coastal and Port Engineering in Developing Countries (COPEDEC XI), hosted at IIT Madras, Chennai. Browse the programme, papers, maps, and venue information for the conference.",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_OFFLINE"]
+  "requestFramePermissions": ["notifications"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_OFFLINE", "MAJOR_CAPABILITY_PUSH_NOTIFICATIONS"]
 }

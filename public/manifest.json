@@ -19,10 +19,14 @@
   "launch_handler": {
     "client_mode": "focus-existing"
   },
+  "permissions_policy": {
+    "notifications": ["self"]
+  },
   "features": [
     "Cross Platform",
     "fast",
-    "offline"
+    "offline",
+    "notifications"
   ],
   "shortcuts": [
     {
