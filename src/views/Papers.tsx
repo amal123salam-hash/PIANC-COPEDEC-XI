@@ -22,7 +22,7 @@ export default function PapersView() {
               Technical <span className="text-secondary">Papers</span>
             </h1>
             <p className="text-xl text-on-surface-variant font-medium opacity-80 leading-relaxed">
-              Explore the latest research in maritime engineering presented at COPEDEC 9. Access over 200 abstracts from global experts.
+              Explore the latest research in maritime engineering presented at COPEDEC XI. Access over 200 abstracts from global experts.
             </p>
           </div>
           <div className="bg-surface-container-high border-l-4 border-tertiary px-6 py-4 rounded-r-2xl shadow-sm">

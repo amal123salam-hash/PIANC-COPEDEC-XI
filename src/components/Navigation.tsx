@@ -19,8 +19,8 @@ export function Header() {
               <Menu size={24} />
             </button>
             <div className="flex items-center gap-3">
-              <span className="text-primary font-black tracking-tighter text-xl hidden sm:block">PIANC-COPEDEC 9</span>
-              <span className="text-primary font-black tracking-tighter text-xl sm:hidden">COPEDEC 9</span>
+              <span className="text-primary font-black tracking-tighter text-xl hidden sm:block">PIANC-COPEDEC XI</span>
+              <span className="text-primary font-black tracking-tighter text-xl sm:hidden">COPEDEC XI</span>
             </div>
           </div>
           
@@ -66,7 +66,7 @@ export function Header() {
                 >
                   <X size={20} />
                 </button>
-                <div className="text-xl font-bold text-primary tracking-tight pr-8">PIANC-COPEDEC 9</div>
+                <div className="text-xl font-bold text-primary tracking-tight pr-8">PIANC-COPEDEC XI</div>
                 <div className="font-label text-[10px] text-secondary uppercase tracking-widest font-bold">IIT Madras, India</div>
               </div>
 

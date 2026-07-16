@@ -79,7 +79,7 @@ export default function App() {
         <footer className="hidden md:block bg-slate-900 text-white py-20 mt-20">
           <div className="max-w-screen-xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12">
             <div>
-              <h4 className="text-2xl font-black mb-6 tracking-tighter">PIANC-COPEDEC 9</h4>
+              <h4 className="text-2xl font-black mb-6 tracking-tighter">PIANC-COPEDEC XI</h4>
               <p className="text-blue-200/60 text-sm leading-relaxed max-w-sm">
                 The premier global exchange for maritime infrastructure innovation and coastal engineering excellence.
               </p>

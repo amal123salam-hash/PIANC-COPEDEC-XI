@@ -43,7 +43,7 @@ export default function HomeView() {
               <span className="font-label text-[10px] uppercase tracking-widest font-bold">21–26 February 2027</span>
             </div>
             <h1 className="text-5xl md:text-8xl font-black text-white tracking-tighter mb-6 leading-[0.95]">
-              PIANC – <br/>COPEDEC 9
+              PIANC – <br/>COPEDEC XI
             </h1>
             <p className="text-xl md:text-2xl text-blue-100/90 font-medium mb-8 leading-relaxed border-l-4 border-tertiary pl-6">
               "Adapting coastal, port and waterway infrastructure to the changing climate."

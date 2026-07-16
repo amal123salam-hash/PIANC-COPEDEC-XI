@@ -66,9 +66,9 @@ export function useSessionReminders(
   const fireNotification = useCallback((s: ConferenceSession) => {
     if (!('Notification' in window) || Notification.permission !== 'granted') return;
     try {
-      new Notification('COPEDEC 9 — starting soon', {
+      new Notification('COPEDEC XI — starting soon', {
         body: `${s.title}\n${s.time} · ${s.location}`,
-        icon: '/PIANC-COPEDEC-9/icons/icon-192x192.png',
+        icon: '/PIANC-COPEDEC-XI/icons/icon-192x192.png',
       });
     } catch {
       /* notifications can throw on some platforms; the in-app banner still shows */

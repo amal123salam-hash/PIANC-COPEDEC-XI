@@ -27,7 +27,7 @@ export default function ScheduleView() {
             Conference <span className="text-tertiary">Schedule</span>
           </h1>
           <p className="text-on-surface-variant max-w-2xl text-lg md:text-xl font-medium opacity-80">
-            Explore technical sessions, keynote addresses, and workshops planned for PIANC-COPEDEC 9 at IIT Madras.
+            Explore technical sessions, keynote addresses, and workshops planned for PIANC-COPEDEC XI at IIT Madras.
           </p>
         </div>
         <Link
