@@ -1,15 +1,67 @@
 {
+  "id": "/PIANC-COPEDEC-XI/",
   "name": "PIANC-COPEDEC XI",
   "short_name": "COPEDEC XI",
   "description": "Official app for the 11th International Conference on Coastal and Port Engineering in Developing Countries, hosted at IIT Madras, Chennai.",
   "start_url": "/PIANC-COPEDEC-XI/",
+  "scope": "/PIANC-COPEDEC-XI/",
   "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone", "browser"],
+  "orientation": "portrait-primary",
   "background_color": "#003366",
   "theme_color": "#003366",
-  "orientation": "portrait-primary",
-  "scope": "/PIANC-COPEDEC-XI/",
   "lang": "en",
-  "categories": ["education", "productivity"],
+  "dir": "ltr",
+  "categories": ["education", "productivity", "events"],
+  "iarc_rating_id": "e84b072d-71b3-4d3e-86ae-31a8ce4e53b7",
+  "prefer_related_applications": false,
+  "related_applications": [],
+  "launch_handler": {
+    "client_mode": "focus-existing"
+  },
+  "features": [
+    "Cross Platform",
+    "fast",
+    "offline"
+  ],
+  "shortcuts": [
+    {
+      "name": "Schedule",
+      "short_name": "Schedule",
+      "description": "View the conference programme and sessions",
+      "url": "/PIANC-COPEDEC-XI/schedule",
+      "icons": [
+        {
+          "src": "/PIANC-COPEDEC-XI/icons/icon-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Papers",
+      "short_name": "Papers",
+      "description": "Browse submitted technical papers",
+      "url": "/PIANC-COPEDEC-XI/papers",
+      "icons": [
+        {
+          "src": "/PIANC-COPEDEC-XI/icons/icon-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Map",
+      "short_name": "Map",
+      "description": "Find venues and points of interest",
+      "url": "/PIANC-COPEDEC-XI/map",
+      "icons": [
+        {
+          "src": "/PIANC-COPEDEC-XI/icons/icon-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ],
   "icons": [
     {
       "src": "/PIANC-COPEDEC-XI/icons/icon-72x72.png",
@@ -58,6 +110,22 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable any"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/PIANC-COPEDEC-XI/assets/screenshots/screenshot-mobile.png",
+      "sizes": "1121x2426",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "PIANC-COPEDEC XI on mobile"
+    },
+    {
+      "src": "/PIANC-COPEDEC-XI/assets/screenshots/screenshot-desktop.png",
+      "sizes": "1280x791",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "PIANC-COPEDEC XI on desktop"
     }
   ]
 }

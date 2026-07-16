@@ -1,0 +1,8 @@
+{
+  "appId": "org.pianc.copedecxi.app",
+  "appName": "PIANC-COPEDEC XI",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "https"
+  }
+}

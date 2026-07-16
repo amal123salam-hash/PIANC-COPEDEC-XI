@@ -1,75 +1,48 @@
-const CACHE_NAME = 'copedec-xi-v1';
-// Must match the repo's GitHub Pages base path (see vite.config.ts `base`).
-// Service worker cache URLs are resolved from the ORIGIN, so they need the
-// full /PIANC-COPEDEC-XI/ prefix or addAll() 404s and the worker fails to install.
-const BASE = '/PIANC-COPEDEC-XI';
-const STATIC_ASSETS = [
-  `${BASE}/`,
-  `${BASE}/index.html`,
-  `${BASE}/manifest.json`,
-];
+const CACHE = "pwabuilder-offline-page";
 
-// Install: cache static assets
-self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(STATIC_ASSETS);
-    })
-  );
-  self.skipWaiting();
-});
+importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox-sw.js');
 
-// Activate: clean up old caches
-self.addEventListener('activate', (event) => {
-  event.waitUntil(
-    caches.keys().then((cacheNames) => {
-      return Promise.all(
-        cacheNames
-          .filter((name) => name !== CACHE_NAME)
-          .map((name) => caches.delete(name))
-      );
-    })
-  );
-  self.clients.claim();
-});
+const offlineFallbackPage = "/PIANC-COPEDEC-XI/offline.html";
 
-// Fetch: network-first for API calls, cache-first for assets
-self.addEventListener('fetch', (event) => {
-  const { request } = event;
-  const url = new URL(request.url);
-
-  // Always go network-first for API requests (Gemini)
-  if (
-    url.hostname.includes('googleapis.com') ||
-    url.hostname.includes('generativelanguage') ||
-    url.pathname.startsWith('/api/')
-  ) {
-    event.respondWith(fetch(request));
-    return;
+self.addEventListener("message", (event) => {
+  if (event.data && event.data.type === "SKIP_WAITING") {
+    self.skipWaiting();
   }
+});
 
-  // Cache-first for static assets
-  event.respondWith(
-    caches.match(request).then((cached) => {
-      if (cached) return cached;
-
-      return fetch(request)
-        .then((response) => {
-          // Cache successful GET responses
-          if (request.method === 'GET' && response.status === 200) {
-            const responseClone = response.clone();
-            caches.open(CACHE_NAME).then((cache) => {
-              cache.put(request, responseClone);
-            });
-          }
-          return response;
-        })
-        .catch(() => {
-          // Fallback to index.html for navigation requests (SPA routing)
-          if (request.mode === 'navigate') {
-            return caches.match(`${BASE}/index.html`);
-          }
-        });
-    })
+self.addEventListener('install', async (event) => {
+  event.waitUntil(
+    caches.open(CACHE)
+      .then((cache) => cache.add(offlineFallbackPage))
   );
+});
+
+if (workbox.navigationPreload.isSupported()) {
+  workbox.navigationPreload.enable();
+}
+
+workbox.routing.registerRoute(
+  new RegExp('/PIANC-COPEDEC-XI/*'),
+  new workbox.strategies.StaleWhileRevalidate({
+    cacheName: CACHE
+  })
+);
+
+self.addEventListener('fetch', (event) => {
+  if (event.request.mode === 'navigate') {
+    event.respondWith((async () => {
+      try {
+        const preloadResp = await event.preloadResponse;
+        if (preloadResp) {
+          return preloadResp;
+        }
+        const networkResp = await fetch(event.request);
+        return networkResp;
+      } catch (error) {
+        const cache = await caches.open(CACHE);
+        const cachedResp = await cache.match(offlineFallbackPage);
+        return cachedResp;
+      }
+    })());
+  }
 });
